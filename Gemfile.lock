@@ -33,8 +33,9 @@ GEM
       rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.3.2.0)
-      sass (~> 3.2)
+    bootstrap-sass-rails (2.3.2.0)
+      railties (>= 3.1.0)
+      sass-rails (>= 3.1.0)
     builder (3.0.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -93,6 +94,8 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.1)
+    meyer-css-reset-rails (1.0.2)
+      rails (~> 3.2.12)
     mime-types (1.23)
     mini_portile (0.5.0)
     multi_json (1.7.6)
@@ -180,7 +183,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootstrap-sass
+  bootstrap-sass-rails
   capybara
   coffee-rails (~> 3.2.1)
   devise
@@ -188,6 +191,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   launchy
+  meyer-css-reset-rails (~> 1.0.2)
   pg
   rails (= 3.2.13)
   rspec-rails
