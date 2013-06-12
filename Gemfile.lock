@@ -65,7 +65,7 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    ffi (1.8.1)
+    ffi (1.9.0)
     formatador (0.2.4)
     guard (1.8.0)
       formatador (>= 0.2.4)
@@ -73,7 +73,7 @@ GEM
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
       thor (>= 0.14.6)
-    guard-rspec (3.0.1)
+    guard-rspec (3.0.2)
       guard (>= 1.8)
       rspec (~> 2.13)
     hike (1.2.3)
@@ -85,7 +85,7 @@ GEM
     json (1.8.0)
     launchy (2.3.0)
       addressable (~> 2.3)
-    listen (1.1.6)
+    listen (1.2.1)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
@@ -94,9 +94,13 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.1)
+    meyer-css-reset-rails (1.0.2)
+      rails (~> 3.2.12)
     mime-types (1.23)
+    mini_portile (0.5.0)
     multi_json (1.7.6)
-    nokogiri (1.5.9)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -187,6 +191,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   launchy
+  meyer-css-reset-rails (~> 1.0.2)
   pg
   rails (= 3.2.13)
   rspec-rails
