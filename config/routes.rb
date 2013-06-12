@@ -1,4 +1,7 @@
 MovieReviews::Application.routes.draw do
+  resources :movies, only: [:index, :show, :new, :create] 
+  root :to => "movies#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

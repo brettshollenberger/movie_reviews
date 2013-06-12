@@ -15,6 +15,7 @@ group :test, :development do
   gem 'guard-rspec'
   gem 'launchy'
   gem 'annotate'
+  gem 'pry-rails'
 end
 # Gems used only for assets and not required
 # in production environments by default.
