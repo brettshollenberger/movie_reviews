@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  before_save :default_values
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -10,4 +12,9 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :reviews, :dependent => :destroy, :inverse_of => :user
   has_many :likes, :dependent => :destroy, :inverse_of => :user
+
+  def default_values
+    self.admin ||= false
+  end
+
 end
