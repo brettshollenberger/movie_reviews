@@ -16,6 +16,7 @@ group :test, :development do
   gem 'launchy'
   gem 'annotate'
   gem 'pry-rails'
+  gem 'shoulda-matchers'
 end
 # Gems used only for assets and not required
 # in production environments by default.
