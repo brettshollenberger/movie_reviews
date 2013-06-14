@@ -1,10 +1,9 @@
 MovieReviews::Application.routes.draw do
-  
   devise_for :users
-
+  resources :movies, only: [:index, :show, :new, :create] 
   root :to => "movies#index"
-  
-  # The priority is based upon order of creation:
+
+  # The priority schis based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
