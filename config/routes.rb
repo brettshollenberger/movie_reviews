@@ -1,8 +1,9 @@
 MovieReviews::Application.routes.draw do
+  devise_for :users
   resources :movies, only: [:index, :show, :new, :create] 
   root :to => "movies#index"
 
-  # The priority is based upon order of creation:
+  # The priority schis based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
@@ -51,7 +52,7 @@ MovieReviews::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  #root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
