@@ -5,4 +5,9 @@ class Movie < ActiveRecord::Base
   validates :description, uniqueness: true
 
   attr_accessible :description, :title
+
+  has_many :reviews, {
+    dependent: :destroy,
+    inverse_of: :movie
+  }
 end
