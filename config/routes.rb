@@ -1,6 +1,8 @@
 MovieReviews::Application.routes.draw do
   devise_for :users
-  resources :movies, only: [:index, :show, :new, :create] 
+  resources :movies do
+    resources :reviews
+  end
   root :to => "movies#index"
 
   # The priority schis based upon order of creation:

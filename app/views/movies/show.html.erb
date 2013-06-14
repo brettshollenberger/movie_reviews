@@ -1,4 +1,26 @@
-<h3>Movie#show</h3>
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <div class="notice"><%= notice %></div>
+      <h3>Movie#show</h3>
 
-<%= @movie.title %>
-<%= @movie.description %>
+      <%= @movie.title %>
+      <%= @movie.description %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <hr>
+      <h3>Reviews</h3>
+        <% @reviews.each do |review| %>
+          <% unless review.content.nil? %>
+            <%= review.score %>
+            <%= review.user.email %>
+            <%= review.content %>
+          <% end %>
+          <hr>
+        <% end %>
+        <%= render '/reviews/review_form' %>
+    </div>
+  </div>
+</div>
