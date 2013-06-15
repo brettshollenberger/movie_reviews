@@ -15,13 +15,30 @@ feature "user can enter review from movies page" do
     click_link "Good Burger Hunting"
     expect(page).to have_content("Reviews")
     fill_in_form_with_valid_attributes
-    click_button "Create Review"
     expect(page).to have_content("Soo grood")
     expect(page).to have_content("Review created")
+  end
+
+  scenario "not logged in yet" do
+    logout(:user)
+    visit root_path
+    click_link "Good Burger Hunting"
+    fill_in_form_with_valid_attributes
+    expect(page).to have_content("Sign in")
+    sign_in_as_valid_user
+    save_and_open_page
+    expect(page).to have_content("Soo grood")
   end
 
   def fill_in_form_with_valid_attributes
     fill_in "Content", with: "Soo grood"
     fill_in "Score", with: "5"
+    click_button "Create Review"
+  end
+
+  def sign_in_as_valid_user
+    fill_in "Email", with: "brett.shollenberger@gmail.com"
+    fill_in "Password", with: "foobar29"
+    click_button "Sign in"
   end
 end
