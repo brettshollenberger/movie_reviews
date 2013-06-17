@@ -26,7 +26,6 @@ feature "user can enter review from movies page" do
     fill_in_form_with_valid_attributes
     expect(page).to have_content("Sign in")
     sign_in_as_valid_user
-    save_and_open_page
     expect(page).to have_content("Soo grood")
   end
 
