@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :movie do
-    title "Good Burger Hunting"
-    description "Starring Misters Keenan,
-    Kel, Matt Damon, and Benjamin Howard Afleck."
+    sequence(:title) { |n| "Good Burger Hunting #{n}" }
+    sequence(:description) { |n| "Starring Misters Keenan, Kel, Matt Damon, and Benjamin Howard Afleck #{n}." }
   end
 
   factory :user do

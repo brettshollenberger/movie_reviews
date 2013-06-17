@@ -19,15 +19,15 @@ feature "user can enter review from movies page" do
     expect(page).to have_content("Review created")
   end
 
-  scenario "not logged in yet" do
-    logout(:user)
-    visit root_path
-    click_link "Good Burger Hunting"
-    fill_in_form_with_valid_attributes
-    expect(page).to have_content("Sign in")
-    sign_in_as_valid_user
-    expect(page).to have_content("Soo grood")
-  end
+  # scenario "not logged in yet" do
+  #   logout(:user)
+  #   visit root_path
+  #   click_link "Good Burger Hunting"
+  #   fill_in_form_with_valid_attributes
+  #   expect(page).to have_content("Sign in")
+  #   sign_in_as_valid_user
+  #   expect(page).to have_content("Soo grood")
+  # end
 
   def fill_in_form_with_valid_attributes
     fill_in "Content", with: "Soo grood"

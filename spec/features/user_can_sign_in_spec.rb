@@ -1,10 +1,10 @@
 require "spec_helper"
 
-feature "user will login" do 
+feature "user will login" do
 
-  let!(:user){FactoryGirl.create(:user)}
+  let!(:user){ FactoryGirl.create(:user) }
 
-scenario "user already has account, wants to login" do 
+scenario "user already has account, wants to login" do
   visit(root_path)
   click_link("login")
   fill_in 'Email', :with => user.email

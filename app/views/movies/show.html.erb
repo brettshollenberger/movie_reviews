@@ -17,6 +17,10 @@
             <%= review.score %>
             <%= review.user.email %>
             <%= review.content %>
+            <% if review.user == current_user %>
+              <%= link_to "Delete", movie_review_path(@movie, review), method: :delete %>
+              <%= link_to "Edit", edit_movie_review_path(@movie, review) %>
+            <% end %>
           <% end %>
           <hr>
         <% end %>
