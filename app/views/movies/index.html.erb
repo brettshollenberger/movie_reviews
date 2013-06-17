@@ -1,5 +1,14 @@
 <h3>Movie#index</h3>
 
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %> 
+
+
 <% @movies.each do |movie| %>
   <%= link_to "#{movie.title}", movie %>  
 <% end %>
