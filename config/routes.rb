@@ -10,7 +10,7 @@ MovieReviews::Application.routes.draw do
     resources :reviews
   end
 
-  root :to => "home#index"
+  root :to => "movies#index"
 
   # The priority schis based upon order of creation:
   # first created -> highest priority.
