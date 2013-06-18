@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618155434) do
+ActiveRecord::Schema.define(:version => 20130618182636) do
 
   create_table "likes", :force => true do |t|
     t.integer  "likable_id",   :null => false
