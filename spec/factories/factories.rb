@@ -22,4 +22,8 @@ FactoryGirl.define do
     movie
   end
 
+  factory :like do
+    review
+  end
+
 end
