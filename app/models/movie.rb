@@ -10,4 +10,8 @@ class Movie < ActiveRecord::Base
     dependent: :destroy,
     inverse_of: :movie
   }
+
+  def self.recent_three
+    Movie.find(:all, :order => "created_at DESC", :limit=>3)
+  end
 end

@@ -23,3 +23,9 @@
 <% end %>
 
 <%= link_to "add new movie", new_movie_path %>
+
+<h3>most recent movies</h3>
+
+<% @recent_movies.each do |movie| %>
+  <%= link_to "#{movie.title}", movie %>
+<% end %>  
