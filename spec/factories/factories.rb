@@ -9,6 +9,7 @@ FactoryGirl.define do
     password "12345678"
     password_confirmation "12345678"
     admin false
+
     factory :admin do
       admin true
     end
@@ -23,7 +24,18 @@ FactoryGirl.define do
   end
 
   factory :like do
-    review
+    user
+
+    trait :review do
+      association :likeable, factory: :review
+    end
+
+    trait :movie do
+      association :likeable, factory: :movie
+    end
+
+    factory :like_for_reviews, traits: [:review]
+    factory :like_for_movies, traits: [:movie]
   end
 
 end
