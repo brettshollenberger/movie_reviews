@@ -7,6 +7,9 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @review = @movie.reviews.new
     @reviews = @movie.reviews
+    @likes = @movie.likes
+    @users = []
+    @likes.each { |like| @users.push(like.user) }
   end
 
   def new
