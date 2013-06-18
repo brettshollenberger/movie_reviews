@@ -1,11 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="span12">
-      <div class="notice"><%= notice %></div>
+        <div class="notice"><%= notice %></div>
       <h3>Movie#show</h3>
 
       <%= @movie.title %>
       <%= @movie.description %>
+      <% if @likes.empty? %>
+        <%= link_to "Like", new_movie_like_path(@movie) %>
+        <p>No one likes this yet.</p>
+      <% elsif @users.include?(current_user) %>
+        <%= link_to "Unlike", movie_like_path(@movie), method: :delete %>
+        <%= pluralize(@movie.likes.count, "likes") %>
+      <% else %>
+        <%= link_to "Like", new_movie_like_path(@movie) %>
+        <%= pluralize(@movie.likes.count, "likes") %>
+      <% end %>
     </div>
   </div>
   <div class="row">

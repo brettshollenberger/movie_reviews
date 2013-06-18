@@ -20,7 +20,7 @@ feature "user can like a movie" do
 
   scenario "user has liked the movie already" do
     click_link "Like"
-    expec(page).to have_content("1 like")
+    expect(page).to have_content("1 like")
     click_link "Unlike"
     expect(page).to have_content("No one likes this")
   end

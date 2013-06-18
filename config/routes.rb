@@ -7,7 +7,10 @@ MovieReviews::Application.routes.draw do
   end
 
   resources :movies do
-    resources :reviews
+    resources :likes
+    resources :reviews do
+      resources :likes
+    end
   end
 
   root :to => "movies#index"
