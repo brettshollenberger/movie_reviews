@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @review = @movie.reviews.new
     @reviews = @movie.reviews
+    record_movie_view
   end
 
   def new
@@ -17,5 +18,11 @@ class MoviesController < ApplicationController
     @movie = Movie.create(params[:movie])
     flash[:notice] = "You have successfully added a new movie"
     redirect_to  movie_path(@movie)
+  end
+
+  private
+  
+  def record_movie_view
+    ViewedMovie.create( user: current_user, movie: @movie )
   end
 end

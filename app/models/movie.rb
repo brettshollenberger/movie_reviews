@@ -10,4 +10,8 @@ class Movie < ActiveRecord::Base
     dependent: :destroy,
     inverse_of: :movie
   }
+  has_many :viewed_movies, { dependent: :destroy }
+  
+  has_many :users,{through: :viewed_movies}
+
 end

@@ -1,0 +1,8 @@
+
+<% if user_signed_in? %>
+last movies viewed
+  <% current_user.last_three_movies_viewed.each do |movie_viewed| %>
+     <%= movie_viewed.movie %>
+  <% end %>
+<% end %>
+
