@@ -14,14 +14,14 @@ feature "user can like a movie" do
 
   scenario "user hasn't liked the movie" do
     expect(page).to have_content("No one likes this")
-    click_link "Like"
+    click_link "like_movie"
     expect(page).to have_content("1 like")
   end
 
   scenario "user has liked the movie already" do
-    click_link "Like"
+    click_link "like_movie"
     expect(page).to have_content("1 like")
-    click_link "Unlike"
+    click_link "unlike_movie"
     expect(page).to have_content("No one likes this")
   end
 

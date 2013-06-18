@@ -7,30 +7,43 @@ class LikesController < ApplicationController
   end
 
   def create
-    @likable = find_likable
+    @likable_parent, @likable_child = find_likable
     @user = current_user
-    @like = @user.likes.build(likable: @likable)
+
+    if @likable_child == nil
+      @like = @user.likes.build(likable: @likable_parent)
+    else
+      @like = @user.likes.build(likable: @likable_child)
+    end
     @like.save
-    redirect_to @likable
+    redirect_to @likable_parent
   end
 
   def destroy
-    @likable = find_likable
+    @likable_parent, @likable_child = find_likable
     @user = current_user
-    @like = Like.where(user_id: current_user.id, likable_id: @likable.id).first
+
+    if @likable_child == nil
+      @like = Like.where(user_id: current_user.id, likable_id: @likable_parent.id).first
+    else
+      @like = Like.where(user_id: current_user.id, likable_id: @likable_child.id).first
+    end
 
     @like.delete
-    redirect_to @likable
+    redirect_to @likable_parent
   end
 
   private
 
   def find_likable
+    likable = []
     params.each do |name, value|
       if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
+        likable.push($1.classify.constantize.find(value))
       end
     end
+    return likable[0], likable[1] if likable.length > 1
+    return likable[0], nil if likable.length == 1
     nil
   end
 end
