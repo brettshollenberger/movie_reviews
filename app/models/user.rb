@@ -18,4 +18,13 @@ class User < ActiveRecord::Base
     :inverse_of => :user
   }
 
+  has_many :viewed_movies, { dependent: :destroy }
+
+  has_many :movies, {through: :viewed_movies}
+
+
+  def last_three_movies_viewed
+    self.viewed_movies.order("created_at DESC").limit(3)
+  end
+
 end
