@@ -2,7 +2,6 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     @recent_movies = Movie.recent_three
-    binding.pry
   end
 
   def show
