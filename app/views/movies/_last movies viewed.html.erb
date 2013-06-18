@@ -2,8 +2,7 @@
 <% if user_signed_in? %>
 last movies viewed
   <% current_user.last_three_movies_viewed.each do |movie_viewed| %>
-
-     <%= link_to "#{movie_viewed.movie.title}", movie_viewed.movie %>
+     <%= movie_viewed.movie %>
   <% end %>
 <% end %>
 
