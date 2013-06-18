@@ -8,7 +8,7 @@ feature "user can like a movie" do
   background do
     @movie = FactoryGirl.create(:movie)
     @user = FactoryGirl.create(:user)
-    login_as(user, :scope => :user)
+    login_as(@user, :scope => :user)
     visit movie_path(@movie)
   end
 
