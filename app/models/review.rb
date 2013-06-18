@@ -21,4 +21,6 @@ class Review < ActiveRecord::Base
   belongs_to :user, {
     inverse_of: :reviews
   }
+
+  has_many :likes, :as => :likable, dependent: :destroy
 end

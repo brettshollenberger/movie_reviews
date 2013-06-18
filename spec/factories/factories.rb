@@ -27,11 +27,11 @@ FactoryGirl.define do
     user
 
     trait :review do
-      association :likeable, factory: :review
+      association :likable, factory: :review
     end
 
     trait :movie do
-      association :likeable, factory: :movie
+      association :likable, factory: :movie
     end
 
     factory :like_for_reviews, traits: [:review]
