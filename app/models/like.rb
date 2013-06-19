@@ -1,8 +1,13 @@
 class Like < ActiveRecord::Base
-  attr_accessible :likable_id, :likable_type, :user, :user_id, :likable
+  attr_accessible :user, :likable, :polarity, :likable_type, :likable_id
 
-  validates :likable_type, :likable_id, :user, :likable,  {
+  validates :user, :likable, :polarity,  {
     presence: true
+  }
+
+  validates :polarity, {
+    numericality: true,
+    inclusion: { :in => -1..1 },
   }
 
   belongs_to :likable, :polymorphic => true

@@ -3,17 +3,14 @@ class LikesController < ApplicationController
     create
   end
 
-  def index
-  end
-
   def create
     @likable_parent, @likable_child = find_likable
     @user = current_user
 
     if @likable_child == nil
-      @like = @user.likes.build(likable: @likable_parent)
+      @like = @user.likes.build(likable: @likable_parent, polarity: params[:polarity])
     else
-      @like = @user.likes.build(likable: @likable_child)
+      @like = @user.likes.build(likable: @likable_child, polarity: params[:polarity])
     end
     @like.save
     redirect_to @likable_parent
@@ -24,9 +21,9 @@ class LikesController < ApplicationController
     @user = current_user
 
     if @likable_child == nil
-      @like = Like.where(user_id: current_user.id, likable_id: @likable_parent.id).first
+      @like = Like.where(user_id: current_user.id, likable_id: @likable_parent.id, likable_type: @likable_parent.class).first
     else
-      @like = Like.where(user_id: current_user.id, likable_id: @likable_child.id).first
+      @like = Like.where(user_id: current_user.id, likable_id: @likable_child.id, likable_type: @likable_child.class).first
     end
 
     @like.delete
