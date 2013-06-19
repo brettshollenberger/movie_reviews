@@ -5,25 +5,8 @@
       <h3>Movie#show</h3>
 
       <%= @movie.title %>
-      <%= image_tag movie.image_url.to_s %>
       <%= @movie.description %>
-
-      <% if @movie.likes.empty? %>
-        <p>No one likes this yet.</p>
-      <% else %>
-        <p class="movie_likes"><%= pluralize(polarify(@movie), likeify(@movie)) %></p>
-      <% end %>
-
-      <% if user_likes? @movie %>
-        <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
-        <p><%= link_to "Dislike", movie_like_path(@movie, :polarity => -1), method: :delete, id: "dislike_movie" %></p>
-      <% elsif user_dislikes? @movie %>
-        <p><%= link_to "Like", movie_like_path(@movie, :polarity => 1), method: :delete, id: "like_movie" %></p>
-        <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
-      <% else %>
-        <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
-        <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
-      <% end %>
+        <%= image_tag @movie.image_url.to_s %>
 
     </div>
   </div>
