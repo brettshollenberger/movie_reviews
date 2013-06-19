@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
 
   def last_three_movies_viewed
-    self.viewed_movies.order("created_at DESC").limit(3)
+    viewed_movies.order("created_at DESC").limit(3)
   end
 
 end

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :viewed_movie do
-    user_id 1
+    user
     sequence(:movie_id) { |n| n }
   end
 end
