@@ -1,6 +1,9 @@
+<%= image_tag avatar_url(current_user) %>
+<span class="signed_in_as"><em>Signed in as: <%= current_user.email %></em></span>
+<br><br>
 <%= simple_form_for [@movie, @review] do |f| %>
-  <%= f.input :content %>
-  <%= f.input :score %>
+  <%= f.input :content, placeholder: "Review this movie!" %>
+  <%= f.input :score, placeholder: "Score (1 to 5)" %>
 
   <%= f.submit %>
 <% end %>

@@ -1,11 +1,54 @@
-<div class="container">
+<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar-inner">
+  <div class="container">
+    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="active brand" href="/movies">MORRISEY REVIEWS MOVIES YOU MIGHT HAVE SEEN</a>
+    <div class="nav-collapse collapse">
+      <ul class="nav">
+          <% if user_signed_in? %>
+            <li><%= link_to 'PROFILE', edit_user_registration_path %> |</li>
+            <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "SIGNUP", new_user_registration_path %> |</li>
+            <li><%= link_to "LOGIN", new_user_session_path %></li>
+          <% end %>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+</div>
+
+<div class="container mainbody">
   <div class="row">
     <div class="span12">
-      <div class="notice"><%= notice %></div>
-      <h3>Movie#show</h3>
+        <div class="notice"><%= notice %></div>
+      <h3><%= @movie.title %></h3>
 
       <%= @movie.title %>
       <%= @movie.description %>
+
+      <% if @movie.likes.empty? %>
+        <p>No one likes this yet.</p>
+      <% else %>
+        <p class="movie_likes"><%= pluralize(polarify(@movie), likeify(@movie)) %></p>
+      <% end %>
+
+      <% if user_likes? @movie %>
+        <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
+        <p><%= link_to "Dislike", movie_like_path(@movie, :polarity => -1), method: :delete, id: "dislike_movie" %></p>
+      <% elsif user_dislikes? @movie %>
+        <p><%= link_to "Like", movie_like_path(@movie, :polarity => 1), method: :delete, id: "like_movie" %></p>
+        <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
+      <% else %>
+        <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
+        <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
+      <% end %>
+
     </div>
   </div>
   <div class="row">
@@ -14,9 +57,28 @@
       <h3>Reviews</h3>
         <% @reviews.each do |review| %>
           <% unless review.content.nil? %>
+            <%= image_tag avatar_url(review.user) %>
             <%= review.score %>
             <%= review.user.email %>
             <%= review.content %>
+
+            <% if review.likes.empty? %>
+              <p>No one likes this yet</p>
+            <% else %>
+              <p class="review_likes"><%= pluralize(polarify(review), likeify(review)) %></p>
+            <% end %>
+
+            <% if user_likes? review %>
+              <p><%= link_to "Like", new_movie_review_like_path(@movie, review, :polarity => 1), id: "like_review" %></p>
+              <p><%= link_to "Dislike", movie_review_like_path(@movie, review, :polarity => -1), method: :delete, id: "dislike_review" %></p>
+            <% elsif user_dislikes? review %>
+              <p><%= link_to "Like", movie_review_like_path(@movie, review, :polarity => 1), method: :delete, id: "like_review" %></p>
+              <p><%= link_to "Dislike", new_movie_review_like_path(@movie, review, :polarity => -1), id: "dislike_review" %></p>
+            <% else %>
+              <p><%= link_to "Like", new_movie_review_like_path(@movie, review, :polarity => 1), id: "like_review" %></p>
+              <p><%= link_to "Dislike", new_movie_review_like_path(@movie, review, :polarity => -1), id: "dislike_review" %></p>
+            <% end %>
+
             <% if review.user == current_user %>
               <%= link_to "Delete", movie_review_path(@movie, review), method: :delete %>
               <%= link_to "Edit", edit_movie_review_path(@movie, review) %>

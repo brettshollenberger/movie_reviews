@@ -10,4 +10,5 @@ class Movie < ActiveRecord::Base
     dependent: :destroy,
     inverse_of: :movie
   }
+  has_many :likes, :as => :likable, dependent: :destroy  
 end
