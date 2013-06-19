@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'factory_girl'
 require 'capybara/rails'
 require "capybara/rspec"
+require "helpers/login_helper"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
