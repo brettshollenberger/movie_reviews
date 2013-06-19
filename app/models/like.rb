@@ -1,5 +1,5 @@
 class Like < ActiveRecord::Base
-  attr_accessible :user, :likable, :polarity
+  attr_accessible :user, :likable, :polarity, :likable_type, :likable_id
 
   validates :user, :likable, :polarity,  {
     presence: true

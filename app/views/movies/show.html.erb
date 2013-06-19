@@ -10,7 +10,7 @@
       <% if @movie.likes.empty? %>
         <p>No one likes this yet.</p>
       <% else %>
-        <p><%= pluralize(polarify(@movie), likeify(@movie)) %></p>
+        <p class="movie_likes"><%= pluralize(polarify(@movie), likeify(@movie)) %></p>
       <% end %>
 
       <% if user_likes? @movie %>
@@ -39,7 +39,7 @@
             <% if review.likes.empty? %>
               <p>No one likes this yet</p>
             <% else %>
-              <p><%= pluralize(polarify(review), likeify(review)) %></p>
+              <p class="review_likes"><%= pluralize(polarify(review), likeify(review)) %></p>
             <% end %>
 
             <% if user_likes? review %>

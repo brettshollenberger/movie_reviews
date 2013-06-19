@@ -21,9 +21,9 @@ class LikesController < ApplicationController
     @user = current_user
 
     if @likable_child == nil
-      @like = Like.where(user_id: current_user.id, likable_id: @likable_parent.id).first
+      @like = Like.where(user_id: current_user.id, likable_id: @likable_parent.id, likable_type: @likable_parent.class).first
     else
-      @like = Like.where(user_id: current_user.id, likable_id: @likable_child.id).first
+      @like = Like.where(user_id: current_user.id, likable_id: @likable_child.id, likable_type: @likable_child.class).first
     end
 
     @like.delete
