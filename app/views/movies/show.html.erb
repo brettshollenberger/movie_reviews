@@ -32,6 +32,7 @@
       <h3>Reviews</h3>
         <% @reviews.each do |review| %>
           <% unless review.content.nil? %>
+            <%= image_tag avatar_url(review.user) %>
             <%= review.score %>
             <%= review.user.email %>
             <%= review.content %>
