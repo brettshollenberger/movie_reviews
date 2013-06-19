@@ -8,9 +8,9 @@ class LikesController < ApplicationController
     @user = current_user
 
     if @likable_child == nil
-      @like = @user.likes.build(likable: @likable_parent)
+      @like = @user.likes.build(likable: @likable_parent, polarity: params[:polarity])
     else
-      @like = @user.likes.build(likable: @likable_child)
+      @like = @user.likes.build(likable: @likable_child, polarity: params[:polarity])
     end
     @like.save
     redirect_to @likable_parent

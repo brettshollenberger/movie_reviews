@@ -18,4 +18,9 @@ module ApplicationHelper
     end
   end
 
+  def likeify(polarity)
+    return "dislike" if polarity.abs != polarity # Polarity is negative
+    return "like"
+  end
+
 end
