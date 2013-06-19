@@ -12,7 +12,5 @@ describe Like do
   it "validates" do
     expect(like_for_movies).to validate_presence_of(:user)
     expect(like_for_movies).to validate_presence_of(:likable)
-    expect(like_for_movies).to validate_presence_of(:likable_id)
-    expect(like_for_movies).to validate_presence_of(:likable_type)
   end
 end

@@ -1,7 +1,7 @@
 class Like < ActiveRecord::Base
-  attr_accessible :likable_id, :likable_type, :user, :user_id, :likable
+  attr_accessible :user, :likable
 
-  validates :likable_type, :likable_id, :user, :likable,  {
+  validates :user, :likable,  {
     presence: true
   }
 
