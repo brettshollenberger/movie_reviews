@@ -1,11 +1,13 @@
 <h3>Movie#new</h3>
 
-<%= form_for @movie do |f| %>
+<%= form_for @movie, :html => {:multipart => true} do |f| %>
   <%= f.label :title%>:
   <%= f.text_field :title %><br />
 
   <%= f.label :description%>:
   <%= f.text_field :description %><br />
+
+    <%= f.file_field :image %><br />
 
   <%= f.submit "add movie" %>
 <% end %>

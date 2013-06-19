@@ -4,7 +4,9 @@ class Movie < ActiveRecord::Base
   validates :title, uniqueness: true
   validates :description, uniqueness: true
 
-  attr_accessible :description, :title
+  attr_accessible :description, :title, :image
+
+  mount_uploader :image, ImageUploader
 
   has_many :reviews, {
     dependent: :destroy,

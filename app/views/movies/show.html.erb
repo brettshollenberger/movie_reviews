@@ -5,6 +5,7 @@
       <h3>Movie#show</h3>
 
       <%= @movie.title %>
+      <%= image_tag movie.image_url.to_s %>
       <%= @movie.description %>
 
       <% if @movie.likes.empty? %>
