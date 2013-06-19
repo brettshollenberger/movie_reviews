@@ -34,8 +34,18 @@ FactoryGirl.define do
       association :likable, factory: :movie
     end
 
-    factory :like_for_reviews, traits: [:likable_review]
-    factory :like_for_movies, traits: [:likable_movie]
+    trait :disliked do
+      polarity -1
+    end
+
+    trait :liked do
+      polarity 1
+    end
+
+    factory :like_for_reviews, traits: [:likable_review, :liked]
+    factory :like_for_movies, traits: [:likable_movie, :liked]
+    factory :dislike_for_reviews, traits: [:likable_review, :disliked]
+    factory :dislike_for_movies, traits: [:likable_movie, :liked]
   end
 
 end

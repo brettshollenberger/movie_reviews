@@ -3,9 +3,6 @@ class LikesController < ApplicationController
     create
   end
 
-  def index
-  end
-
   def create
     @likable_parent, @likable_child = find_likable
     @user = current_user

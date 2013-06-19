@@ -12,12 +12,17 @@
       <% else %>
         <p><%= pluralize(@movie.likes.count, "like") %></p>
       <% end %>
+        <% if user_likes? @movie %>
+          <p><%= link_to "Like", new_movie_like_path(@movie), id: "like_movie" %></p>
+          <p><%= link_to "Dislike", movie_like_path(@movie), method: :delete, id: "dislike_movie" %></p>
+        <% elsif user_dislikes? @movie %>
+          <p><%= link_to "Like", movie_like_path(@movie), method: :delete, id: "like_movie" %></p>
+          <p><%= link_to "Dislike", new_movie_like_path(@movie), id: "dislike_movie" %></p>
+        <% else %>
+          <p><%= link_to "Like", new_movie_like_path(@movie), id: "like_movie" %></p>
+          <p><%= link_to "Dislike", new_movie_like_path(@movie), id: "dislike_movie" %></p>
+        <% end %>
 
-      <% if user_likes? @movie %>
-        <p><%= link_to "Unlike", movie_like_path(@movie), method: :delete, id: "unlike_movie" %></p>
-      <% else %>
-        <p><%= link_to "Like", new_movie_like_path(@movie), id: "like_movie" %></p>
-      <% end %>
     </div>
   </div>
   <div class="row">
