@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe User do
-  let(:user) {FactoryGirl.build(:user)}
+  let(:user)  { FactoryGirl.build(:user) }
+  let(:admin) { FactoryGirl.build(:admin) }
   it "should be valid" do
     expect(user).to be_valid
   end
@@ -18,5 +19,13 @@ describe User do
 
   it "is be default not an admin user" do
     expect(user.admin).to be_false
+  end
+
+  describe "admin?" do
+
+    it "validates the admin status of a user" do
+      expect(user.admin?).to be_false
+      expect(admin.admin?).to be_true
+    end
   end
 end
