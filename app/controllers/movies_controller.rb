@@ -7,8 +7,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @review = @movie.reviews.new
     @reviews = @movie.reviews
-    @polarity = 0
-    @movie.likes.each { |like| @polarity += like.polarity }
   end
 
   def new

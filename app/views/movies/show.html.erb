@@ -10,18 +10,19 @@
       <% if @movie.likes.empty? %>
         <p>No one likes this yet.</p>
       <% else %>
-        <p><%= pluralize(@polarity, likeify(@polarity)) %></p>
+        <p><%= pluralize(polarify(@movie), likeify(@movie)) %></p>
       <% end %>
-        <% if user_likes? @movie %>
-          <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
-          <p><%= link_to "Dislike", movie_like_path(@movie, :polarity => -1), method: :delete, id: "dislike_movie" %></p>
-        <% elsif user_dislikes? @movie %>
-          <p><%= link_to "Like", movie_like_path(@movie, :polarity => 1), method: :delete, id: "like_movie" %></p>
-          <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
-        <% else %>
-          <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
-          <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
-        <% end %>
+
+      <% if user_likes? @movie %>
+        <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
+        <p><%= link_to "Dislike", movie_like_path(@movie, :polarity => -1), method: :delete, id: "dislike_movie" %></p>
+      <% elsif user_dislikes? @movie %>
+        <p><%= link_to "Like", movie_like_path(@movie, :polarity => 1), method: :delete, id: "like_movie" %></p>
+        <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
+      <% else %>
+        <p><%= link_to "Like", new_movie_like_path(@movie, :polarity => 1), id: "like_movie" %></p>
+        <p><%= link_to "Dislike", new_movie_like_path(@movie, :polarity => -1), id: "dislike_movie" %></p>
+      <% end %>
 
     </div>
   </div>
@@ -38,13 +39,18 @@
             <% if review.likes.empty? %>
               <p>No one likes this yet</p>
             <% else %>
-              <p><%= pluralize(review.likes.count, "like") %></p>
+              <p><%= pluralize(polarify(review), likeify(review)) %></p>
             <% end %>
 
             <% if user_likes? review %>
-              <%= link_to "Unlike", movie_review_like_path(@movie, review), method: :delete, id: "unlike_review" %>
+              <p><%= link_to "Like", new_movie_review_like_path(@movie, review, :polarity => 1), id: "like_review" %></p>
+              <p><%= link_to "Dislike", movie_review_like_path(@movie, review, :polarity => -1), method: :delete, id: "dislike_review" %></p>
+            <% elsif user_dislikes? review %>
+              <p><%= link_to "Like", movie_review_like_path(@movie, review, :polarity => 1), method: :delete, id: "like_review" %></p>
+              <p><%= link_to "Dislike", new_movie_review_like_path(@movie, review, :polarity => -1), id: "dislike_review" %></p>
             <% else %>
-              <%= link_to "Like", new_movie_review_like_path(@movie, review), id: "like_review" %>
+              <p><%= link_to "Like", new_movie_review_like_path(@movie, review, :polarity => 1), id: "like_review" %></p>
+              <p><%= link_to "Dislike", new_movie_review_like_path(@movie, review, :polarity => -1), id: "dislike_review" %></p>
             <% end %>
 
             <% if review.user == current_user %>

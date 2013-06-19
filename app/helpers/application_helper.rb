@@ -18,9 +18,16 @@ module ApplicationHelper
     end
   end
 
-  def likeify(polarity)
+  def likeify(collection)
+    polarity = polarify(collection)
     return "dislike" if polarity.abs != polarity # Polarity is negative
     return "like"
+  end
+
+  def polarify(collection)
+    returner = 0
+    collection.likes.each { |like| returner += like.polarity }
+    return returner
   end
 
 end
