@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  before_filter :validate_admin
+
   def index
     @movies = Movie.all
     @users = User.all
@@ -32,5 +34,9 @@ class AdminController < ApplicationController
       flash[:error] = "There was an error lifting the suspension"
       redirect_to admin_edit_user_path(@user)
     end
+  end
+
+  def validate_admin
+    redirect_to root_path unless current_user.admin?
   end
 end

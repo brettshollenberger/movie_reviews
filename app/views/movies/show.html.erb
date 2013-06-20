@@ -55,8 +55,9 @@
 
                 <br>
 
+                <%= link_to "Flag Review", flag_review_path(review), method: :put %>
                 <% if review.user == current_user %>
-                  <%= link_to "Delete", movie_review_path(@movie, review), method: :delete %>
+                  | <%= link_to "Delete", movie_review_path(@movie, review), method: :delete %> |
                   <%= link_to "Edit", edit_movie_review_path(@movie, review) %>
                 <% end %>
                 <br><br>
