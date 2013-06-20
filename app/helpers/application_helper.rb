@@ -35,4 +35,8 @@ module ApplicationHelper
     "http://gravatar.com/avatar/#{gravatar_id}.png?"
   end
 
+  def admin?
+    current_user.admin?
+  end
+
 end

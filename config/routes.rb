@@ -1,6 +1,8 @@
 MovieReviews::Application.routes.draw do
   devise_for :users
 
+  resources :admin
+
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"

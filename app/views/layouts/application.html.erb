@@ -9,6 +9,33 @@
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="brand active" href="/movies">MORRISEY REVIEWS MOVIES YOU MIGHT HAVE SEEN</a>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+              <% if user_signed_in? %>
+                <% if admin? %>
+                  <li><%= link_to "ADMIN", admin_index_path %> |</li>
+                <% end %>
+                <li><%= link_to 'PROFILE', edit_user_registration_path %> |</li>
+                <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "SIGNUP", new_user_registration_path %> |</li>
+                <li><%= link_to "LOGIN", new_user_session_path %></li>
+              <% end %>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
 
 <%= yield %>
 
