@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20130619173326) do
+ActiveRecord::Schema.define(:version => 20130620165723) do
 
   create_table "likes", :force => true do |t|
     t.integer  "likable_id",                  :null => false
@@ -22,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20130619173326) do
     t.integer  "user_id",                     :null => false
     t.integer  "polarity",     :default => 1, :null => false
   end
-  
+
   create_table "movies", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -61,6 +60,20 @@ ActiveRecord::Schema.define(:version => 20130619173326) do
   create_table "viewed_movies", :force => true do |t|
     t.integer  "user_id"
     t.integer  "movie_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "viewed_review", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "review_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "viewed_reviews", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "review_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

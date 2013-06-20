@@ -23,4 +23,5 @@ class Review < ActiveRecord::Base
   }
 
   has_many :likes, :as => :likable, dependent: :destroy
+  has_many :viewed_reviews, { dependent: :destroy }
 end

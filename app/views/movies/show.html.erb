@@ -36,6 +36,7 @@
             <%= review.score %>
             <%= review.user.email %>
             <%= review.content %>
+            <%= link_to "Read Review", movie_review_path(@movie, review) %>
 
             <% if review.likes.empty? %>
               <p>No one likes this yet</p>
