@@ -7,7 +7,7 @@ class ViewedReview < ActiveRecord::Base
   attr_accessible :review, :user
 
   def uniq_review_viewed
-   errors.add(:review, "repeated") if user.last_three_review_viewed.pluck(:review_id).include? review_id
+   errors.add(:review, "repeated") if user.last_three_reviews_viewed.pluck(:review_id).include? review_id
   end
 
 end

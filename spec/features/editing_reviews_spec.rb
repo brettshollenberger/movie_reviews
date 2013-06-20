@@ -12,6 +12,7 @@ feature "user can enter review from movies page" do
 
   scenario "normal user logged on" do
     visit movies_path
+    save_and_open_page
     click_link "Good Burger Hunting"
     expect(page).to have_content("Good Burger Hunting is the best
     moobie I evar sawn today")
