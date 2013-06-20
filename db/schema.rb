@@ -11,8 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618171814) do
 
+ActiveRecord::Schema.define(:version => 20130619173326) do
+
+  create_table "likes", :force => true do |t|
+    t.integer  "likable_id",                  :null => false
+    t.string   "likable_type",                :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+    t.integer  "user_id",                     :null => false
+    t.integer  "polarity",     :default => 1, :null => false
+  end
+  
   create_table "movies", :force => true do |t|
     t.string   "title"
     t.text     "description"

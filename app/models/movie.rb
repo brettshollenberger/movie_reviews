@@ -10,8 +10,14 @@ class Movie < ActiveRecord::Base
     dependent: :destroy,
     inverse_of: :movie
   }
+
   has_many :viewed_movies, { dependent: :destroy }
   
   has_many :users,{through: :viewed_movies}
 
+  has_many :likes, :as => :likable, dependent: :destroy 
+
+  def self.recent_three
+    Movie.find(:all, :order => "created_at DESC", :limit=>3)
+  end
 end
