@@ -1,5 +1,9 @@
-<%= image_tag avatar_url(current_user) %>
-<span class="signed_in_as"><em>Signed in as: <%= current_user.email %></em></span>
+<% if current_user %>
+  <%= image_tag avatar_url(current_user) %>
+  <span class="signed_in_as"><em>Signed in as: <%= current_user.email %></em></span>
+<% else %>
+  You must <%= link_to "Login", login_path %> to review a movie.
+<% end %>
 <br><br>
 <%= simple_form_for [@movie, @review] do |f| %>
   <%= f.input :content, placeholder: "Review this movie!" %>
