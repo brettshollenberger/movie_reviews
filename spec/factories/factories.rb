@@ -16,6 +16,11 @@ FactoryGirl.define do
       admin true
     end
 
+    trait :suspended_status do
+      status "suspended"
+    end
+
+    factory :suspended_user, traits: [:suspended_status]
     factory :admin, traits: [:admin_user]
     factory :general_user, traits: [:normal_user]
   end

@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_filter :validate_admin
+  before_filter :suspended_account?
 
   def index
     @movies = Movie.all
@@ -50,5 +51,14 @@ class AdminController < ApplicationController
 
   def validate_admin
     redirect_to root_path unless current_user.admin?
+  end
+
+  def suspended_account?
+    if current_user
+      if current_user.status == "suspended"
+        sign_out(current_user)
+        redirect_to root_path, notice: "Your account has been suspended"
+      end
+    end
   end
 end
