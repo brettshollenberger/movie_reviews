@@ -3,6 +3,7 @@
     <div class="span12">
       <div class="notice"><%= notice %></div>
 
+      <span class="user_status"><h3>User Status: <%= @user.status.capitalize %></span> | <%= link_to "Suspend Account", admin_suspend_user_path(@user), method: :put %></h3></span>
       <h2>Reviewing <%= @user.email %></h2>
       <p>Reviews Count: <%= @user.reviews.count %></p>
       <p>Last Login: <%= distance_of_time_in_words(Time.now, @user.last_sign_in_at) %> ago</p>

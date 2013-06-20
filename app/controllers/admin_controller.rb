@@ -36,6 +36,18 @@ class AdminController < ApplicationController
     end
   end
 
+  def suspend_user
+    @user = User.find(params[:format])
+
+    if @user.update_attributes(status: "suspended")
+      flash[:notice] = "Account suspended"
+      redirect_to admin_edit_user_path(@user)
+    else
+      flash[:notice] = "There was an error suspending this account"
+      redirect_to admin_edit_user_path(@user)
+    end
+  end
+
   def validate_admin
     redirect_to root_path unless current_user.admin?
   end

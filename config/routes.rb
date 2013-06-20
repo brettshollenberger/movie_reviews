@@ -3,6 +3,7 @@ MovieReviews::Application.routes.draw do
   put "admin/update/user", to: "admin#update_user"
   put "admin/suspend/review", to: "admin#suspend_review"
   put "admin/unsuspend/review", to: "admin#unsuspend_review"
+  put "admin/suspend/user", to: "admin#suspend_user"
   put "flag/review", to: "reviews#flag"
 
   devise_for :users

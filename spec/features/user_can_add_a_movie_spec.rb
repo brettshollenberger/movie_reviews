@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "add new movie" do
 
-  let!(:user){FactoryGirl.create(:user)}
+  let!(:general_user){FactoryGirl.create(:general_user)}
 
   it "creates new movie and redirects to show page for new movie" do
     valid_login

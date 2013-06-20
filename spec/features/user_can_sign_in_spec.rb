@@ -2,7 +2,7 @@
 
 feature "user will login" do
 
-  let!(:user){ FactoryGirl.create(:user) }
+  let!(:general_user){ FactoryGirl.create(:general_user) }
 
   scenario "user already has account, wants to login" do
     valid_login

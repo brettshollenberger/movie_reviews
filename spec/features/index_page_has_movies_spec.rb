@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "index page" do
   let!(:movie){FactoryGirl.create(:movie)}
-  let!(:user){FactoryGirl.create(:user)}
+  let!(:general_user){FactoryGirl.create(:general_user)}
 
   it "lists the movie names" do
     valid_login

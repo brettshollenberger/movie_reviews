@@ -8,8 +8,8 @@ feature "user can like movies and reviews on the same page" do
   background do
     @review = FactoryGirl.create(:review)
     @movie = @review.movie
-    @user = FactoryGirl.create(:user)
-    login_as(@user, :scope => :user)
+    @general_user = FactoryGirl.create(:general_user)
+    login_as(@general_user, :scope => :user)
     visit movie_path(@review.movie)
   end
 

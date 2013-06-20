@@ -6,8 +6,8 @@ Warden.test_mode!
 feature "user can enter review from movies page" do
   background do
     review = FactoryGirl.create(:review)
-    user = User.find(review.user_id)
-    login_as(user, :scope => :user)
+    general_user = User.find(review.user_id)
+    login_as(general_user, :scope => :user)
   end
 
   scenario "normal user logged on" do
@@ -32,8 +32,8 @@ end
 feature "user cannot edit other users' reviews" do
   background do
     review = FactoryGirl.create(:review)
-    user = FactoryGirl.create(:user)
-    login_as(user, :scope => :user)
+    general_user = FactoryGirl.create(:general_user)
+    login_as(general_user, :scope => :user)
   end
 
   scenario "normal user logged on" do
