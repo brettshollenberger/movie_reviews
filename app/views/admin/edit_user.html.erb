@@ -1,0 +1,24 @@
+<div class="container mainbody">
+  <div class="row">
+    <div class="span12">
+
+      <h2>Reviewing <%= @user.email %></h2>
+      <span style="float:right;"><%= image_tag avatar_url(current_user) %></span>
+
+      <% @user.reviews.each do |review| %>
+        <div class="review-backend">
+          <div class="movie_name"><h2><%= review.movie.title %></h2></div>
+          <div class="gravatar"><%= image_tag avatar_url(review.user) %></div>
+          <div class="score_circle"><div class="score"><%= review.score %></div></div>
+          <div class="email"><%= review.user.email %></div>
+          <br>
+          <p><%= review.content %></p>
+          <%= link_to "Remove Review", admin_remove_review_path(review), method: :delete %>
+        </div>
+      <% end %>
+      <br><br>
+      <%= link_to "Back", admin_index_path %>
+
+    </div>
+  </div>
+</div>

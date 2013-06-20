@@ -30,14 +30,9 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%= link_to "#{user.email}", edit_user_registration_path(user) %></td>
+              <td><%= link_to "#{user.email}", admin_edit_user_path(user) %></td>
               <td><%= user.reviews.count %></td>
-              <td>
-                <% if user.current_sign_in_at != user.last_sign_in_at %>
-                  Currently signed in
-                <% else %>
-                  <%= distance_of_time_in_words(Time.now, user.last_sign_in_at) %> ago
-                <% end %></td>
+              <td><%= distance_of_time_in_words(Time.now, user.last_sign_in_at) %> ago</td>
             </tr>
           <% end %>
         </tbody>
