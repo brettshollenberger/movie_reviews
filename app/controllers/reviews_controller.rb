@@ -3,6 +3,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find(params[:id])
+    record_review_view
   end
 
   def create
@@ -50,5 +52,10 @@ class ReviewsController < ApplicationController
       flash[:error] = "There was an error updating your review"
       redirect_to @movie
     end
+  end
+
+  private
+  def record_review_view
+    ViewedReview.create( user: current_user, review: @review )
   end
 end
