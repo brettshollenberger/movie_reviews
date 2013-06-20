@@ -2,6 +2,9 @@ class ReviewsController < ApplicationController
   def index
   end
 
+  def show
+  end
+
   def create
     if current_user
       @movie = Movie.find(params[:movie_id])

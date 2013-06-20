@@ -16,8 +16,8 @@ FactoryGirl.define do
   end
 
   factory :review do
-    content "Good Burger Hunting is the best
-    moobie I evar sawn today."
+    sequence(:content) { |n| "Good Burger Hunting is the best
+    moobie I evar sawn today#{n}." }
     score "2"
     user
     movie
