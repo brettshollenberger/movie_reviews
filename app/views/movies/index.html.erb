@@ -1,25 +1,21 @@
-<h3>Movie#index</h3>
+<div class="container mainbody">
+  <div class="row">
+    <div class="span12">
+      <h3>LIKE ALL THE MOVIES!</h3>
 
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
 
-<% if flash[:error] %>
-  <%= flash[:error] %>
-<% end %> 
+      <% if flash[:error] %>
+        <%= flash[:error] %>
+      <% end %>
 
-<% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path %> |
-  <%= link_to "Login", new_user_session_path %>
-<% end %>
-
-
-<% @movies.each do |movie| %>
-  <%= link_to "#{movie.title}", movie %>  
-<% end %>
-
-<%= link_to "add new movie", new_movie_path %>
+      <% @movies.each do |movie| %>
+        <%= link_to "#{movie.title}", movie %>
+      <% end %>
+      <br><br>
+      <%= link_to "add new movie", new_movie_path %>
+    </div>
+  </div>
+</div>

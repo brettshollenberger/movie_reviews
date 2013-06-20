@@ -48,4 +48,17 @@ class ReviewsController < ApplicationController
       redirect_to @movie
     end
   end
+
+  def flag
+    @review = Review.find(params[:format])
+    @movie = @review.movie
+
+    if @review.update_attributes(status: "flagged")
+      flash[:notice] = "Review flagged"
+      redirect_to @movie
+    else
+      flash[:notice] = "There was an error flagging this review"
+      redirect_to @movie
+    end
+  end
 end

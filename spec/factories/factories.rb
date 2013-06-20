@@ -8,11 +8,21 @@ FactoryGirl.define do
     sequence(:email) { |n| "sicknazty#{n}@gmail.com" }
     password "12345678"
     password_confirmation "12345678"
-    admin false
+    trait :normal_user do
+      admin false
+    end
 
-    factory :admin do
+    trait :admin_user do
       admin true
     end
+
+    trait :suspended_status do
+      status "suspended"
+    end
+
+    factory :suspended_user, traits: [:suspended_status]
+    factory :admin, traits: [:admin_user]
+    factory :general_user, traits: [:normal_user]
   end
 
   factory :review do
@@ -21,6 +31,16 @@ FactoryGirl.define do
     score "2"
     user
     movie
+    trait :flagged_review do
+      status "flagged"
+    end
+
+    trait :suspended_review do
+      status "suspended"
+    end
+
+    factory :flagged, traits: [:flagged_review]
+    factory :suspended, traits: [:suspended_review]
   end
 
   factory :like do

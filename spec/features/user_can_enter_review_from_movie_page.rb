@@ -5,9 +5,9 @@ Warden.test_mode!
 
 feature "user can enter review from movies page" do
   background do
-    user = FactoryGirl.create(:user)
+    general_user = FactoryGirl.create(:general_user)
     movie = FactoryGirl.create(:movie)
-    login_as(user, :scope => :user)
+    login_as(general_user, :scope => :user)
   end
 
   scenario "normal user logged orn" do

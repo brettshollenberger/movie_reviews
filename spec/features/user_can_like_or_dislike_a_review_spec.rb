@@ -7,8 +7,8 @@ feature "user can like a review" do
 
   background do
     @review = FactoryGirl.create(:review)
-    @user = FactoryGirl.create(:user)
-    login_as(@user, :scope => :user)
+    @general_user = FactoryGirl.create(:general_user)
+    login_as(@general_user, :scope => :user)
     visit movie_path(@review.movie)
   end
 
@@ -22,7 +22,7 @@ feature "user can like a review" do
     click_link "like_review"
     expect(page).to have_content("1 like")
     click_link "dislike_review"
-    expect(page).to have_content("No one likes this")
+    expect(page).to have_content("0 likes")
   end
 
   scenario "user can dislike the review" do
@@ -34,14 +34,14 @@ feature "user can like a review" do
     click_link "dislike_review"
     expect(page).to have_content("1 dislike")
     click_link "like_review"
-    expect(page).to have_content("No one likes this")
+    expect(page).to have_content("0 likes")
   end
 
   scenario "user can like or dislike the movie at will!" do
     click_link "like_review"
     expect(page).to have_content("1 like")
     click_link "dislike_review"
-    expect(page).to have_content("No one likes this")
+    expect(page).to have_content("0 likes")
     click_link "dislike_review"
     expect(page).to have_content("1 dislike")
     click_link "dislike_review"

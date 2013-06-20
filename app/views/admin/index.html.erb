@@ -1,0 +1,45 @@
+<div class="container mainbody">
+  <div class="row">
+    <div class="span12">
+      <h3>LIKE ALL THE MOVIES!</h3>
+
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
+
+      <% if flash[:error] %>
+        <%= flash[:error] %>
+      <% end %>
+
+      <% @movies.each do |movie| %>
+        <%= link_to "#{movie.title}", movie %>
+      <% end %>
+      <br><br>
+      <%= link_to "add new movie", new_movie_path %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span12">
+      <h3>USARS!</h3>
+      <table class="table table-hover">
+        <thead>
+          <th>Email</th>
+          <th>Review Count</th>
+          <th>Last Login</th>
+          <th>Account Status</th>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to "#{user.email}", admin_edit_user_path(user) %></td>
+              <td><%= user.reviews.count %></td>
+              <td><%= distance_of_time_in_words(Time.now, user.last_sign_in_at) %> ago</td>
+              <td><%= user.status.capitalize %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br><br>
+    </div>
+  </div>
+</div>

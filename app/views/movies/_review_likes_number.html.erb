@@ -1,0 +1,5 @@
+<% if review.likes.empty? %>
+  <p>No one likes this yet</p>
+<% else %>
+  <p class="review_likes"><%= pluralize(polarify(review), likeify(review)) %></p>
+<% end %>

@@ -1,0 +1,60 @@
+<div class="container mainbody">
+  <div class="row">
+    <div class="span12">
+      <div class="notice"><%= notice %></div>
+
+      <span class="user_status"><h3>User Status: <%= @user.status.capitalize %></span> | <%= link_to "Suspend Account", admin_suspend_user_path(@user), method: :put %></h3></span>
+      <h2>Reviewing <%= @user.email %></h2>
+      <p>Reviews Count: <%= @user.reviews.count %></p>
+      <p>Last Login: <%= distance_of_time_in_words(Time.now, @user.last_sign_in_at) %> ago</p>
+
+      <% if flagged_reviews(@user) %>
+        <div class="flagged_reviews">
+          <% flagged_reviews(@user).each do |review| %>
+            <div class="flagged_review">
+              <span style="float:right;"><h3><span class="flagged">Status: <%= review.status.capitalize %></span> | <%= link_to "Suspend Review", admin_suspend_review_path(review), method: :put %></h3></span>
+              <div class="movie_name"><h2><%= review.movie.title %></h2></div>
+              <div class="gravatar"><%= image_tag avatar_url(review.user) %></div>
+              <div class="score_circle"><div class="score"><%= review.score %></div></div>
+              <div class="email"><%= review.user.email %></div>
+              <br>
+              <p><%= review.content %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% @user.reviews.each do |review| %>
+        <% unless review.status == "flagged" %>
+          <div class="review-backend">
+            <span style="float:right;">
+              <h3>
+                <% if review.status == "ok" %>
+                  <span class="ok">
+                <% elsif review.status == "suspended" %>
+                  <span class="suspended">
+                <% end %>
+                Status: <%= review.status.capitalize %>
+                </span> |
+                <% if review.status == "suspended" %>
+                  <%= link_to "Lift Suspension", admin_unsuspend_review_path(review), method: :put %>
+                <% else %>
+                  <%= link_to "Suspend Review", admin_suspend_review_path(review), method: :put %>
+                <% end %>
+              </h3>
+            </span>
+            <div class="movie_name"><h2><%= review.movie.title %></h2></div>
+            <div class="gravatar"><%= image_tag avatar_url(review.user) %></div>
+            <div class="score_circle"><div class="score"><%= review.score %></div></div>
+            <div class="email"><%= review.user.email %></div>
+            <br>
+            <p><%= review.content %></p>
+          </div>
+        <% end %>
+      <% end %>
+      <br><br>
+      <%= link_to "Back", admin_index_path %>
+
+    </div>
+  </div>
+</div>
