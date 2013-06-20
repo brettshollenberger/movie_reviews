@@ -39,4 +39,13 @@ module ApplicationHelper
     current_user.admin?
   end
 
+  def flagged_reviews(user)
+    flagged = []
+    user.reviews.each do |review|
+      flagged.push(review) if review.status == "flagged"
+    end
+    return flagged if !flagged.empty?
+    return false
+  end
+
 end
