@@ -1,6 +1,5 @@
 class Review < ActiveRecord::Base
-  attr_accessible :content, :score, :movie_id,
-  :user_id
+  attr_accessible :content, :score, :movie_id, :status, :user_id
 
   validates :content, :movie, :user, :score, {
     presence: true

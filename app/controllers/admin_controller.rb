@@ -8,15 +8,28 @@ class AdminController < ApplicationController
     @user = User.find(params[:format])
   end
 
-  def remove_review
+  def suspend_review
     @review = Review.find(params[:format])
     @user = @review.user
 
-    if @review.delete
-      flash[:notice] = "Review deleted"
+    if @review.update_attributes(status: "suspended")
+      flash[:notice] = "Review suspended"
       redirect_to admin_edit_user_path(@user)
     else
-      flash[:error] = "There was an error deleting the review"
+      flash[:error] = "There was an error suspending the review"
+      redirect_to admin_edit_user_path(@user)
+    end
+  end
+
+  def unsuspend_review
+    @review = Review.find(params[:format])
+    @user = @review.user
+
+    if @review.update_attributes(status: "ok")
+      flash[:notice] = "Suspension lifted"
+      redirect_to admin_edit_user_path(@user)
+    else
+      flash[:error] = "There was an error lifting the suspension"
       redirect_to admin_edit_user_path(@user)
     end
   end

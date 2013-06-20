@@ -1,7 +1,8 @@
 MovieReviews::Application.routes.draw do
   get "admin/edit/user", to: "admin#edit_user"
   put "admin/update/user", to: "admin#update_user"
-  delete "admin/remove/review", to: "admin#remove_review"
+  put "admin/suspend/review", to: "admin#suspend_review"
+  put "admin/unsuspend/review", to: "admin#unsuspend_review"
   devise_for :users
 
   resources :admin

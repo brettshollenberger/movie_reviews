@@ -1,8 +1,11 @@
 <div class="container mainbody">
   <div class="row">
     <div class="span12">
+      <div class="notice"><%= notice %></div>
 
       <h2>Reviewing <%= @user.email %></h2>
+      <p>Reviews Count: <%= @user.reviews.count %></p>
+      <p>Last Login: <%= distance_of_time_in_words(Time.now, @user.last_sign_in_at) %> ago</p>
       <span style="float:right;"><%= image_tag avatar_url(current_user) %></span>
 
       <% @user.reviews.each do |review| %>
@@ -13,7 +16,20 @@
           <div class="email"><%= review.user.email %></div>
           <br>
           <p><%= review.content %></p>
-          <%= link_to "Remove Review", admin_remove_review_path(review), method: :delete %>
+          <% if review.status == "ok" %>
+            <span class="ok">
+          <% elsif review.status == "flagged" %>
+          <span class="flagged">
+          <% elsif review.status == "suspended" %>
+          <span class="suspended">
+          <% end %>
+          Status: <%= review.status.capitalize %>
+          </span> |
+          <% if review.status == "suspended" %>
+            <%= link_to "Lift Suspension", admin_unsuspend_review_path(review), method: :put %>
+          <% else %>
+            <%= link_to "Suspend Review", admin_suspend_review_path(review), method: :put %>
+          <% end %>
         </div>
       <% end %>
       <br><br>
